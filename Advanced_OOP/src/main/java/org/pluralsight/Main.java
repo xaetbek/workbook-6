@@ -1,5 +1,7 @@
 package org.pluralsight;
 
+import org.pluralsight.interfaces.PricedItem;
+import org.pluralsight.models.MenuItem;
 import org.pluralsight.models.Smoothie;
 import org.pluralsight.models.Snack;
 import org.pluralsight.utils.Basket;
@@ -9,6 +11,15 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
+
+        Smoothie greenBoost = new Smoothie("Green Boost", 4.99, true, "Spinach", "Apple");
+        Snack chips = new Snack("Natural Chips", 7.99);
+        MenuItem<Smoothie> special = new MenuItem<> ("Special of the Day", greenBoost);
+        MenuItem<Snack> snack = new MenuItem<>("Chips of the Day" , chips);
+        System.out.println(special.getProduct().getName()); // Green Boost
+        System.out.println(snack.getProduct().getName()); // Natural Chips
+
+
         // Create smoothies
         Smoothie s1 = new Smoothie("Strawberry Dream", 3.50, false, "Strawberry", "Milk");
         Smoothie s2 = new Smoothie("Green Boost", 4.99, true, "Spinach", "Apple", "Mint");
@@ -20,7 +31,7 @@ public class Main {
         smoothieBasket.addItem(s2);
         smoothieBasket.addItem(s3);
 
-        System.out.println("🍹 Smoothie Basket Receipt:");
+        System.out.println("\n🍹 Smoothie Basket Receipt:");
         smoothieBasket.printReceipt();
         System.out.println("Total: €" + String.format("%.2f", smoothieBasket.getTotalPrice()));
 
@@ -56,5 +67,16 @@ public class Main {
         System.out.println("\n🍪 Snack Basket Receipt:");
         snackBasket.printReceipt();
         System.out.println("Total: €" + String.format("%.2f", snackBasket.getTotalPrice()));
+
+        // Create a basket list of PricedItem interface type
+        Basket<PricedItem> pricedBasket = new Basket<>();
+        pricedBasket.addItem(s1);
+        pricedBasket.addItem(s2);
+        pricedBasket.addItem(s3);
+        pricedBasket.addItem(chips);
+        pricedBasket.addItem(greenBoost);
+
+        System.out.println("\nBelow is the receipt for the priced basket using the PricedItem interface");
+        pricedBasket.printReceipt();
     }
 }
