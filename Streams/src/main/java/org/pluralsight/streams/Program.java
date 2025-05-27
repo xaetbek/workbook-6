@@ -25,13 +25,13 @@ public class Program {
         String name = scanner.nextLine();
 
         // Find people with matching names using streams
-        System.out.println("\nMatching people (using streams):");
-        people.stream()
-                .filter(person ->
-                        person.getFirstName().toLowerCase().contains(name.toLowerCase()) ||
-                                person.getLastName().toLowerCase().contains(name.toLowerCase()))
-                .forEach(person ->
-                        System.out.println(person.getFirstName() + " " + person.getLastName()));
+//        System.out.println("\nMatching people (using streams):");
+//        people.stream()
+//                .filter(person ->
+//                        person.getFirstName().toLowerCase().contains(name.toLowerCase()) ||
+//                                person.getLastName().toLowerCase().contains(name.toLowerCase()))
+//                .forEach(person ->
+//                        System.out.println(person.getFirstName() + " " + person.getLastName()));
 
         // Find people with matching names using for loop
         System.out.println("\nMatching people (using for loop):");
